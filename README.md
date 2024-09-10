@@ -12,8 +12,8 @@ Este documento apresenta uma descrição detalhada dos casos de uso e das interf
 ## Telas do Sistema
 
 ### Tela 1: Tela de Login (Aluno)
-(<img width="1222" alt="image1" src="https://github.com/user-attachments/assets/355bc663-3c88-4e7b-ad42-275b894adf61">
-ng)
+<img width="1222" alt="image1" src="https://github.com/user-attachments/assets/355bc663-3c88-4e7b-ad42-275b894adf61">
+
 
 Esta é a tela de login destinada aos alunos do sistema. O aluno deve inserir seu nome de usuário e senha para acessar o portal da Universidade.
 
@@ -24,7 +24,7 @@ Esta é a tela de login destinada aos alunos do sistema. O aluno deve inserir se
 Esta tela permite ao aluno selecionar uma disciplina e assistir às aulas correspondentes diretamente no portal.
 
 ### Tela 3: Portal do Aluno - Turmas e Disciplinas
-![Portal do Aluno - Turmas e Disciplinas]<img width="1222" alt="image3" src="https://github.com/user-attachments/assets/17578b21-b3da-4325-8f8b-644e0a487def">
+<img width="1222" alt="image3" src="https://github.com/user-attachments/assets/17578b21-b3da-4325-8f8b-644e0a487def">
 
 
 Nesta tela, os alunos podem visualizar suas turmas, disciplinas e o status de aprovação em cada uma delas.
