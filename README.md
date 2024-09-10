@@ -13,7 +13,8 @@ Este documento apresenta uma descrição detalhada dos casos de uso e das interf
 ## Telas do Sistema
 
 ### Tela 1: Tela de Login (Aluno)
-![Tela de Login do Aluno](image1.png)
+![Tela de Login do Aluno](<img width="1222" alt="image1" src="https://github.com/user-attachments/assets/355bc663-3c88-4e7b-ad42-275b894adf61">
+ng)
 
 Esta é a tela de login destinada aos alunos do sistema. O aluno deve inserir seu nome de usuário e senha para acessar o portal da Universidade.
 
