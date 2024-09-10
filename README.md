@@ -1,4 +1,3 @@
-<img width="1222" alt="image6" src="https://github.com/user-attachments/assets/2b877bd9-da2a-4a5b-ad7a-358082aa8504">
 # Projeto_Integrador
 
 Este documento apresenta uma descrição detalhada dos casos de uso e das interfaces do sistema Universidade, desenvolvido como parte do Projeto Integrador do Curso de Análise e Desenvolvimento de Sistemas do SENAC. O projeto foi realizado pelos seguintes integrantes:
