@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Obras</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+
+        <div id="login-container" class="form-container">
+            <div class="form-header">
+                <h1>Bem-vindo</h1>
+                <p>Acesse sua conta para continuar</p>
+            </div>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="cta-button">Entrar</button>
+            </form>
+            <div id="message" class="message"></div>
+        </div>
+
+        <div id="engineer-dashboard" class="dashboard hidden">
+            <header class="dashboard-header">
+                <h2>Dashboard do Engenheiro</h2>
+                <button id="logout-btn-engineer" class="logout-button">Sair</button>
+            </header>
+            
+            <section id="engineer-dashboard-list" class="dashboard-section">
+                <h3 class="section-title">Gerenciamento de Obras</h3>
+                <button id="add-project-btn" class="cta-button add-button">Cadastrar Nova Obra</button>
+                <div id="project-list" class="project-list">
+                    </div>
+            </section>
+
+            <section id="manage-project-section" class="dashboard-section hidden">
+                <h3 class="section-title" id="manage-project-title"></h3>
+                
+                <div class="manage-grid">
+                    <div class="manage-box">
+                        <h4>Registrar Nova Etapa</h4>
+                        <form id="add-stage-form" class="manage-form">
+                            <input type="text" id="stage-name" placeholder="Nome da etapa" required>
+                            <textarea id="stage-comment" placeholder="Comentário técnico" required></textarea>
+                            <label for="stage-photos" class="file-label">
+                                <span id="file-name">Selecionar Fotos</span>
+                            </label>
+                            <input type="file" id="stage-photos" accept="image/*" multiple required style="display: none;">
+                            <button type="submit" class="cta-button">Adicionar Etapa</button>
+                        </form>
+                    </div>
+
+                    <div class="manage-box">
+                        <h4>Enviar Aviso ao Cliente</h4>
+                        <form id="send-notice-form" class="manage-form">
+                            <textarea id="notice-message" placeholder="Mensagem do aviso" required></textarea>
+                            <button type="submit" class="cta-button">Enviar Aviso</button>
+                        </form>
+                    </div>
+
+                    <div class="manage-box">
+                        <h4>Gestão de Tarefas</h4>
+                        <form id="add-task-form" class="manage-form">
+                            <input type="text" id="task-description" placeholder="Descrição da Tarefa" required>
+                            <button type="submit" class="cta-button">Adicionar Tarefa</button>
+                        </form>
+                        <div id="task-list" class="history-list"></div>
+                    </div>
+
+                </div>
+
+                <div class="history-section">
+                    <h4>Histórico da Obra</h4>
+                    <div id="project-history" class="history-list">
+                        </div>
+                </div>
+
+                <div class="manage-box">
+                    <h4>Gestão de Documentos</h4>
+                    <form id="add-document-form" class="manage-form">
+                        <input type="text" id="document-name" placeholder="Nome do documento" required>
+                        <input type="file" id="document-file" required>
+                        <button type="submit" class="cta-button">Adicionar Documento</button>
+                    </form>
+                    <div id="document-list">
+                        </div>
+                </div>
+
+                <button id="back-to-list-btn" class="secondary-button">Voltar para a Lista de Obras</button>
+            </section>
+        </div>
+
+        <div id="client-dashboard" class="dashboard hidden">
+            <header class="dashboard-header">
+                <h2>Acompanhamento da Obra</h2>
+                <button id="logout-btn-client" class="logout-button">Sair</button>
+            </header>
+            
+            <section class="dashboard-section">
+                <h3 class="section-title" id="obra-nome"></h3>
+                <p class="client-info">Cliente: <span id="cliente-nome"></span></p>
+                <div class="progress-container">
+                    <div id="client-progress-bar" class="progress-bar" style="width: 0%;"></div>
+                    <div id="client-progress-text" class="progress-text">0%</div>
+                </div>
+                <span id="obra-status" class="status"></span>
+            </section>
+
+            <section class="dashboard-section">
+                <h3 class="section-title">Relatórios de Progresso</h3>
+                <div id="report-details">
+                    </div>
+            </section>
+
+            <section class="dashboard-section timeline-section">
+                <h3 class="section-title">Linha do Tempo</h3>
+                <div class="timeline" id="timeline-list">
+                    </div>
+            </section>
+            
+            <section class="dashboard-section">
+                <h3 class="section-title">Galeria de Fotos</h3>
+                <div id="photo-gallery" class="gallery">
+                    </div>
+            </section>
+
+            <section class="dashboard-section">
+                <h3 class="section-title">Avisos e Comunicação</h3>
+                <ul id="avisos-list" class="avisos-list">
+                    </ul>
+                <div id="communication-section" class="communication-box">
+                    <h4>Comunicação e Suporte</h4>
+                    <form id="client-chat-form">
+                        <textarea id="chat-message" placeholder="Escreva sua mensagem aqui..."></textarea>
+                        <button type="submit" class="cta-button">Enviar Mensagem</button>
+                    </form>
+                    <div id="alerts-list" class="alerts-list"></div>
+                </div>
+            </section>
+        </div>
+
+        <div id="dev-dashboard" class="dashboard hidden">
+            <header class="dashboard-header">
+                <h2>Dashboard do Desenvolvedor</h2>
+                <button id="logout-btn-dev" class="logout-button">Sair</button>
+            </header>
+
+            <section class="dashboard-section">
+                <h3 class="section-title">Estatísticas do Sistema</h3>
+                <div class="stats-grid" id="system-stats">
+                    </div>
+                <div class="chart-container">
+                    <img id="project-status-chart" src="project_status_bar_chart.png" alt="Gráfico de status do projeto">
+                </div>
+            </section>
+
+            <section class="dashboard-section">
+                <h3 class="section-title">Gerenciar Usuários</h3>
+                <div class="manage-grid">
+                    <div class="manage-box">
+                        <h4>Adicionar Engenheiro</h4>
+                        <form id="add-engineer-form" class="manage-form">
+                            <input type="text" id="new-engineer-name" placeholder="Nome Completo" required>
+                            <input type="tel" id="new-engineer-phone" placeholder="Telefone" required>
+                            <input type="email" id="new-engineer-email" placeholder="E-mail" required>
+                            <input type="password" id="new-engineer-password" placeholder="Senha" required>
+                            <button type="submit" class="cta-button">Adicionar Engenheiro</button>
+                        </form>
+                    </div>
+                    <div class="manage-box">
+                        <h4>Adicionar Cliente</h4>
+                        <form id="add-client-form" class="manage-form">
+                            <input type="text" id="new-client-name" placeholder="Nome Completo" required>
+                            <input type="tel" id="new-client-phone" placeholder="Telefone" required>
+                            <input type="email" id="new-client-email" placeholder="E-mail" required>
+                            <input type="password" id="new-client-password" placeholder="Senha" required>
+                            <button type="submit" class="cta-button">Adicionar Cliente</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="manage-box">
+                    <h4>Usuários Existentes</h4>
+                    <div id="user-list">
+                        </div>
+                </div>
+            </section>
+            
+            <section class="dashboard-section">
+                <h3 class="section-title">Projetos</h3>
+                <button id="dev-add-project-btn" class="cta-button add-button">Cadastrar Novo Projeto</button>
+                <div id="dev-project-list" class="project-list">
+                    </div>
+                <div class="manage-box">
+                    <h4>Gestão Financeira e de Materiais</h4>
+                    <form id="add-cost-form" class="manage-form">
+                        <input type="hidden" id="cost-project-id">
+                        <select id="cost-type" required>
+                            <option value="">Selecione o tipo de custo...</option>
+                            <option value="material">Material</option>
+                            <option value="maodeobra">Mão de Obra</option>
+                        </select>
+                        <input type="text" id="cost-description" placeholder="Descrição do Custo" required>
+                        <input type="number" id="cost-value" placeholder="Valor (R$)" required>
+                        <button type="submit" class="cta-button">Registrar Custo</button>
+                    </form>
+                    <div id="project-costs-list"></div>
+                </div>
+            </section>
+        </div>
+
+        <div id="add-project-modal" class="modal hidden">
+            <div class="modal-content">
+                <span id="close-modal-btn" class="close-button">&times;</span>
+                <h3>Cadastrar Nova Obra</h3>
+                <form id="new-project-form">
+                    <div class="input-group">
+                        <label for="new-project-name">Nome da Obra</label>
+                        <input type="text" id="new-project-name" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="new-project-client-name">Nome do Cliente</label>
+                        <input type="text" id="new-project-client-name" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="new-project-client-email">E-mail do Cliente</label>
+                        <input type="email" id="new-project-client-email" required>
+                    </div>
+                    <button type="submit" class="cta-button">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="assign-user-modal" class="modal hidden">
+            <div class="modal-content">
+                <span id="close-assign-modal-btn" class="close-button">&times;</span>
+                <h3 id="assign-modal-title">Designar Equipe</h3>
+                <form id="assign-user-form">
+                    <div class="input-group">
+                        <label for="assign-engineer">Engenheiro</label>
+                        <select id="assign-engineer" class="select-field">
+                            <option value="">Selecione um engenheiro...</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="assign-client">Cliente</label>
+                        <select id="assign-client" class="select-field">
+                            <option value="">Selecione um cliente...</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="cta-button">Designar</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="dev-add-project-modal" class="modal hidden">
+            <div class="modal-content">
+                <span id="close-dev-modal-btn" class="close-button">&times;</span>
+                <h3>Adicionar Novo Projeto</h3>
+                <form id="dev-add-project-form">
+                    <div class="input-group">
+                        <label for="dev-new-project-name">Residência</label>
+                        <input type="text" id="dev-new-project-name" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="dev-new-project-engineer">Engenheiro</label>
+                        <select id="dev-new-project-engineer" class="select-field" required>
+                            <option value="">Selecione um engenheiro...</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="dev-new-project-client">Cliente</label>
+                        <select id="dev-new-project-client" class="select-field" required>
+                            <option value="">Selecione um cliente...</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="dev-new-project-status">Status</label>
+                        <select id="dev-new-project-status" class="select-field" required>
+                            <option value="Em andamento">Em andamento</option>
+                            <option value="Concluído">Concluído</option>
+                            <option value="Aguardando">Aguardando</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="dev-new-project-progress">Progresso (%)</label>
+                        <input type="number" id="dev-new-project-progress" min="0" max="100" value="0" required>
+                    </div>
+                    <button type="submit" class="cta-button">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+        
+        <div id="dev-edit-project-modal" class="modal hidden">
+            <div class="modal-content">
+                <span id="close-edit-modal-btn" class="close-button">&times;</span>
+                <h3>Editar Projeto</h3>
+                <form id="dev-edit-project-form">
+                    <input type="hidden" id="edit-project-id">
+                    <div class="input-group">
+                        <label for="edit-project-status">Status</label>
+                        <select id="edit-project-status" class="select-field" required>
+                            <option value="Em andamento">Em andamento</option>
+                            <option value="Concluído">Concluído</option>
+                            <option value="Aguardando">Aguardando</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="edit-project-progress">Progresso (%)</label>
+                        <input type="number" id="edit-project-progress" min="0" max="100" required>
+                    </div>
+                    <button type="submit" class="cta-button">Salvar Alterações</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="edit-user-modal" class="modal hidden">
+            <div class="modal-content">
+                <span id="close-user-edit-modal-btn" class="close-button">&times;</span>
+                <h3>Editar Usuário</h3>
+                <form id="edit-user-form">
+                    <input type="hidden" id="edit-user-original-email">
+                    <div class="input-group">
+                        <label for="edit-user-name">Nome</label>
+                        <input type="text" id="edit-user-name" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="edit-user-email">E-mail</label>
+                        <input type="email" id="edit-user-email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="edit-user-phone">Telefone</label>
+                        <input type="tel" id="edit-user-phone" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="edit-user-password">Senha (deixe em branco para não alterar)</label>
+                        <input type="password" id="edit-user-password">
+                    </div>
+                    <button type="submit" class="cta-button">Salvar Alterações</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
